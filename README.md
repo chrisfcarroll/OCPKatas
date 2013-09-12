@@ -59,8 +59,9 @@ Kata Rules
   days, and will sell items at half price in the week before the deadline.
   <li>The Gilded Cheese wants to sell a speciality “Aged Brie”. This increases in price by 20% each week
   for 28 days at which point it's price stays constant for a further 2 years.
-  <li>The Gilded Armoury sells iron weapons which lose 10% of their value each year. Except for a legendary
-    weapon “Sulfuras”, which they'll only ever sell for £100,000.
+  <li>Everyone needs financial reports. This must show the (1) value of all stock held (2) the cost of 
+  depreciation (loss in stock value) in the past month and (3) the value of stock that was binned in the 
+  past month.
   <li>The Gilded Stage sells concert tickets. These increase in price by 20% each week until the date of the
   concert, on which day they are sold at half price. The following day they become valueless and are binned.
   </ol>
