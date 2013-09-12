@@ -10,7 +10,13 @@ source code.
 Apparent implication: it should be possible to add functionality to a code base not by modifying
 the current code, but only by extending it.
 
-This repo contains various katas with starter-projects for those katas.
+This is particularly important for components that are used by several client components but which
+must still be updated without forcing existing clients to be update. In fact this was exactly the 
+case that Bertrand Meyer was addressing when he set out the Open-Closed Principle. It's fair to say 
+that it's still a significant issue in software.
+
+This repo contains various katas which may help in learning ways of addressing this; and some 
+starter-projects for those katas.
 
 Kata Rules
 ==========
