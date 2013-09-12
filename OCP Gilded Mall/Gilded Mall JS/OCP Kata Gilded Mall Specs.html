@@ -37,6 +37,10 @@
       source code.</p>
     <p>Apparent implication: it should be possible to add functionality to a code base not by modifying
     the current code, but only by extending it.</p>
+    <p>This is particularly important for components that are used by several client components but which
+    must still be updated without forcing existing clients to be update. In fact this was exactly the 
+    case that Bertrand Meyer was addressing when he set out the Open-Closed Principle. It's fair to say 
+    that it's still a significant issue in software.</p>
     <h4>Kata Rules</h4>
     <ol start="0"><li>Write the first failing test.</ol>
     <ol>
@@ -65,7 +69,6 @@
     <ol>
     <li>All tenants want to record item name and price for all their stock. The stock list must update daily,
       applying to the following rules.
-    <li>All shops will record a sale price for each stock item.
     <li>The Gilded Dress will reduce the sale price of each item by 10% of its original sale price every week
     until it falls to 25% of original price, from which point it stays constant.
     <li>The Gilded Tin Can sells tinned food. Each can has a sell by date typically about a year from when it
