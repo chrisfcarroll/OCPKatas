@@ -42,7 +42,6 @@ Kata Rules
   <ol>
   <li>All tenants want to record item name and price for all their stock. The stock list must update daily,
     applying to the following rules.
-  <li>All shops will record a sale price for each stock item.
   <li>The Gilded Dress will reduce the sale price of each item by 10% of its original sale price every week
   until it falls to 25% of original price, from which point it stays constant.
   <li>The Gilded Tin Can sells tinned food. Each can has a sell by date typically about a year from when it
