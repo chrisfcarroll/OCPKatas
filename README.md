@@ -10,6 +10,8 @@ source code.
 Apparent implication: it should be possible to add functionality to a code base not by modifying
 the current code, but only by extending it.
 
+This repo contains various katas with starter-projects for those katas.
+
 Kata Rules
 ==========
 
@@ -32,30 +34,28 @@ Kata Rules
     the next test just by changing the aggregate of objects that is returned by the factory.
     Be careful not to implement new functionality; the current test should still fail.
 </ol>
-<h3>Gilded Rose Specs</h3>
-<p>Hi and welcome to team Gilded Rose. As you know, we are a small inn with a prime location in a
-  prominent city ran by a friendly innkeeper named Allison. We also buy and sell only the finest goods.
-  The requirements for our stock management system are to:</p>
-<ol>
-<li>Keep a list of our stock.</li>
-<li>Update the list daily according to these rules:
+<h3>Gilded Mall Specs</h3>
+  <p>Hello and welcome to team Gilded Mall. As you know, we are a small shopping mall opening in a prime location in
+    a prominent city. We will house a growing number of stores, each of which will sell only the finest goods
+    and services. We will provide stock management software to all our tenants, catering to their common&mdash;and
+    not so common&mdash;requirements.</p>
   <ol>
-    <li>All items have a SellIn value which denotes the number of days we have to sell the item.
-    <li>All items have a Quality value which denotes how valuable the item is.
-    <li>At the end of each day our system lowers both values for every item.
-    Pretty simple, right? Well this is where it gets interesting:
-    <li>
-    Once the sell by date has passed, Quality degrades twice as fast.
-    The Quality of an item is never negative.
-    <li>
-    “Aged Brie” actually increases in Quality the older it gets.
-    The Quality of an item is never more than 50.
-    <li>
-    “Sulfuras”, being a legendary item, never has to be sold or decreases in Quality.
-    <li>
-    “Backstage passes”, like aged brie, increases in Quality as it’s SellIn value approaches;
-    Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or
-    less but Quality drops to 0 after the concert.
+  <li>All tenants want to record item name and price for all their stock. The stock list must update daily,
+    applying to the following rules.
+  <li>All shops will record a sale price for each stock item.
+  <li>The Gilded Dress will reduce the sale price of each item by 10% of its original sale price every week
+  until it falls to 25% of original price, from which point it stays constant.
+  <li>The Gilded Tin Can sells tinned food. Each can has a sell by date typically about a year from when it
+  comes in. Two months before that date, the sale price will be halved. When the date passes, the can
+  is unsaleable and must be removed from stock.
+  <li>The Gilded Carrot sells fresh vegetables. It must always dispose of stock that it has held for 7 days,
+  and will sell items at half price on the day of the deadline.
+  <li>The Gilded Cheese Wheel sells excellent cheeses. It must always dispose of stock that it has held for 28
+  days, and will sell items at half price in the week before the deadline.
+  <li>The Gilded Cheese wants to sell a speciality “Aged Brie”. This increases in price by 20% each week
+  for 28 days at which point it's price stays constant for a further 2 years.
+  <li>The Gilded Armoury sells iron weapons which lose 10% of their value each year. Except for a legendary
+    weapon “Sulfuras”, which they'll only ever sell for £100,000.
+  <li>The Gilded Stage sells concert tickets. These increase in price by 20% each week until the date of the
+  concert, on which day they are sold at half price. The following day they become valueless and are binned.
   </ol>
-</li>
-</ol>
