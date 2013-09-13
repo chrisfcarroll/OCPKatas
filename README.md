@@ -3,7 +3,7 @@ OCPKatas
 
 Katas for practising the Open-Closed Principle
 
-"software entities (classes, modules, functions, etc.) should be open for extension, but closed for
+"Software entities (classes, modules, functions, etc.) should be open for extension, but closed for
 modification"; that is, such an entity can allow its behaviour to be modified without altering its
 source code.
 
@@ -48,20 +48,26 @@ Kata Rules
   <ol>
   <li>All tenants want to record item name and price for all their stock. The stock list must update daily,
     applying to the following rules.
+  <li>Everyone needs financial reports. This must show the (1) value of all stock held (2) the cost of 
+  depreciation (loss in stock value) in the past month.
   <li>The Gilded Dress will reduce the sale price of each item by 10% of its original sale price every week
   until it falls to 25% of original price, from which point it stays constant.
   <li>The Gilded Tin Can sells tinned food. Each can has a sell by date typically about a year from when it
   comes in. Two months before that date, the sale price will be halved. When the date passes, the can
   is unsaleable and must be removed from stock.
-  <li>The Gilded Carrot sells fresh vegetables. It must always dispose of stock that it has held for 7 days,
-  and will sell items at half price on the day of the deadline.
+  <li>The Gilded Carrot sells fresh vegetables. It must always dispose of stock that it has held for 7 days.
   <li>The Gilded Cheese Wheel sells excellent cheeses. It must always dispose of stock that it has held for 28
   days, and will sell items at half price in the week before the deadline.
-  <li>The Gilded Cheese wants to sell a speciality “Aged Brie”. This increases in price by 20% each week
-  for 28 days at which point it's price stays constant for a further 2 years.
-  <li>Everyone needs financial reports. This must show the (1) value of all stock held (2) the cost of 
-  depreciation (loss in stock value) in the past month and (3) the value of stock that was binned in the 
+  <li>The food shops also want their monthly finance report to show the value of stock that was binned in the 
   past month.
-  <li>The Gilded Stage sells concert tickets. These increase in price by 20% each week until the date of the
-  concert, on which day they are sold at half price. The following day they become valueless and are binned.
   </ol>
+<h4>Hints, Tips, Notes</h4>
+<ul>
+<li>The kata revolves around how you handle the combination of shared and not-shared requirements, so if time
+is limited don't spend it on getting the pricing rules correct for edge cases.</p>
+<li>It's acceptable for your factory to have a factory method named for each shop type (and 
+probably the simplest way to meet the 'No conditionals in the factory' constraint). The challenge will be
+in how each method assembles its shop from shared components.
+<li>Use simple test data. Just one or 2 stock items per shop should suffice.
+<li>For the enthusiastic, try it in both a statically typed language and a dynamic one.
+</ul>
