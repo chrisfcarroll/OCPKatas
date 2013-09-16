@@ -1,18 +1,19 @@
-var gildedStockList= function(){
+var gildedShop= function(){
 
   var me= {
-    stockList : []
+    stockList : [],
+    ageStock : function(days){}
   };
 
   return me;
 }();
 
+var allShops= {};
+
 var GildedShopFactory= function(shopName){
-  return  Object.create(gildedStockList,{shopName:{value:shopName}});
+  allShops[shopName]= Object.create(gildedShop,{shopName:{value:shopName}});
+  return allShops[shopName];
 };
 
 var theGildedDress = GildedShopFactory("Gilded Dress");
 
-var allShops= {
-  gildedDress : theGildedDress
-};
