@@ -17,7 +17,7 @@ namespace ClassLibrary1
         [SetUp]
         public void SetUp()
         {
-            shop = new GildedStockManager ();
+            shop = GildedStockManagerFactory.Create();
         }
 
         [Test]
@@ -25,6 +25,54 @@ namespace ClassLibrary1
         {
             shop.StockList.ShouldAllSatisfy (i => i.Name, Is.Not.Null );
             shop.StockList.ShouldAllSatisfy (i => i.Price, Is.Not.Null );
+        }
+    }
+
+    [TestFixture]
+    public class GildedDressTests
+    {
+        GildedStockManager classUnderTest;
+        List<StockItem> testData= new List<StockItem>{
+            new StockItem{Name="Red Dress",  Price=10 },
+            new StockItem{Name="Blue Dress", Price=15}
+        };
+
+        [SetUp]
+        public void SetupWithStock()
+        {
+            classUnderTest = GildedStockManagerFactory.CreateGildedDress();
+            classUnderTest.StockList.AddRange(testData);
+        }
+        
+        [Test]
+        public void ShouldKeepPriceLevelFor10Weeks()
+        {
+            //A
+            var originalPrices = classUnderTest.StockList.Select (i => i.GetHashCode()).ToList ();
+
+            for(int i=1; i<=70; i+=1){
+                //A
+                classUnderTest.EndOfDay();
+                //A
+                classUnderTest.StockList.Select(it=>it.GetHashCode()).Except(originalPrices).ShouldBeEmpty();
+            }
+        }
+
+        [Test]
+        public void ShouldReduceThePriceOfEachItemBy25pcAfterItHasBeenInStockFor10Weeks()
+        {
+            //A
+            var originalPrices = classUnderTest.StockList
+                                               .Select (i => new StockItem { Name=i.Name, Price= i.Price }).ToList ();
+            //A
+            classUnderTest.EndOfDay(71);
+            //A
+            foreach(var originalItem in originalPrices)
+            {
+                var itemNow = classUnderTest.StockList.First (i => i.Name == originalItem.Name);
+                itemNow.Price.ShouldEqual (originalItem.Price * 0.75m);
+            }
+
         }
     }
 }

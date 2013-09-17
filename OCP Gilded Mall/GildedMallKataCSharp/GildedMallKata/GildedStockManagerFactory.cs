@@ -8,10 +8,14 @@ namespace GildMallKata
 {
     public class GildedStockManagerFactory
     {
-      public static GildedStockManager Create()
+        public static GildedStockManager Create()
         {
             return new GildedStockManager ();
         }
-    }
 
+        public static GildedStockManager CreateGildedDress()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

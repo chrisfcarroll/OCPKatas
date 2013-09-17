@@ -15,6 +15,15 @@ namespace GildMallKata
         }
 
         public List<StockItem> StockList { get; private set; }
+
+        public void EndOfDay ()
+        {
+            throw new NotImplementedException ();
+        }
+        public void EndOfDay(int days)
+        {
+            throw new NotImplementedException ();
+        }
     }
 
     public class StockItem
