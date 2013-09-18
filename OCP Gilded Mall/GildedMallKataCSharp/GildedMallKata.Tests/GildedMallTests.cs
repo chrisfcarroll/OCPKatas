@@ -75,4 +75,27 @@ namespace ClassLibrary1
 
         }
     }
+
+    [TestFixture]
+    public class GildedTinCanTests
+    {
+        GildedStockManagerV2 classUnderTest;
+        List<StockItem> testData;
+
+        [SetUp]
+        public void SetupWithStock()
+        {
+            classUnderTest = GildedStockManagerFactory.CreateGildedTinCan();
+            classUnderTest.StockList.AddRange(testData);
+        }
+
+        [Test]
+        public void ShouldKeepStockUntilSellby()
+        {
+                classUnderTest.EndOfDay(400);
+                //A
+                classUnderTest.StockList.ShouldBeEmpty();
+        }
+
+    }
 }

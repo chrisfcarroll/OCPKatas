@@ -17,5 +17,10 @@ namespace GildMallKata
         {
             return new GildedStockManagerV2("Gilded Dress");
         }
+
+        public static GildedStockManagerV2 CreateGildedTinCan()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
