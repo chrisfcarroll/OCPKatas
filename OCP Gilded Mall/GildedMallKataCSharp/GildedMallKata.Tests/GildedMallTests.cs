@@ -17,7 +17,7 @@ namespace ClassLibrary1
         [SetUp]
         public void SetUp()
         {
-            shop = GildedStockManagerFactory.Create();
+            shop = GildedStockManagerFactory.CreateGildedDress();
         }
 
         [Test]
@@ -31,10 +31,10 @@ namespace ClassLibrary1
     [TestFixture]
     public class GildedDressTests
     {
-        GildedStockManager classUnderTest;
-        List<StockItem> testData= new List<StockItem>{
-            new StockItem{Name="Red Dress",  Price=10 },
-            new StockItem{Name="Blue Dress", Price=15}
+        GildedStockManagerV2 classUnderTest;
+        List<StockItemV2> testData= new List<StockItemV2>{
+            new StockItemV2{Name="Red Dress",  Price=10},
+            new StockItemV2{Name="Blue Dress", Price=15}
         };
 
         [SetUp]
@@ -50,7 +50,7 @@ namespace ClassLibrary1
             //A
             var originalPrices = classUnderTest.StockList.Select (i => i.GetHashCode()).ToList ();
 
-            for(int i=1; i<=70; i+=1){
+            for(int i=1; i<=70; i++){
                 //A
                 classUnderTest.EndOfDay();
                 //A
@@ -70,7 +70,7 @@ namespace ClassLibrary1
             foreach(var originalItem in originalPrices)
             {
                 var itemNow = classUnderTest.StockList.First (i => i.Name == originalItem.Name);
-                itemNow.Price.ShouldEqual (originalItem.Price * 0.75m);
+                itemNow.Price.ShouldEqual(originalItem.Price * 0.75m);
             }
 
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GildMallKata
 {
 
-    public class GildedStockManager
+    public class GildedStockManager 
     {
         public GildedStockManager()
         {
@@ -15,14 +15,37 @@ namespace GildMallKata
         }
 
         public List<StockItem> StockList { get; private set; }
+    }
 
-        public void EndOfDay ()
+    public class GildedStockManagerV2 : GildedStockManager
+    {
+        public string Name { get; private set;}
+
+        readonly DateTime startDate = DateTime.Today;
+        int age;
+
+        public GildedStockManagerV2( string name )
         {
-            throw new NotImplementedException ();
+            Name = name;
         }
-        public void EndOfDay(int days)
+
+        new IEnumerable<StockItemV2> StockList { get { return base.StockList.Cast<StockItemV2>(); } }
+
+        public void EndOfDay()
         {
-            throw new NotImplementedException ();
+            age+=1;
+            foreach(var item in StockList)
+            {
+                if(startDate.AddDays(age) == item.ArrivedInStock.AddDays(71) )
+                {
+                    item.Price *= 0.75m;
+                }
+            }
+        }
+
+        public void EndOfDay(int daysPassed)
+        {
+            for(int i=1; i<=daysPassed; i++){ EndOfDay(); }
         }
     }
 
@@ -30,6 +53,15 @@ namespace GildMallKata
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
+    }
+
+    public class StockItemV2 : StockItem
+    {
+        public StockItemV2()
+        {
+            ArrivedInStock = DateTime.Today;
+        }
+        public DateTime ArrivedInStock {get; set;}
     }
 
 }

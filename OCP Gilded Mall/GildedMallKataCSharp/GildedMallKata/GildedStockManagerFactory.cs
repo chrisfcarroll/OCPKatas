@@ -10,12 +10,12 @@ namespace GildMallKata
     {
         public static GildedStockManager Create()
         {
-            return new GildedStockManager ();
+            return new GildedStockManager();
         }
 
-        public static GildedStockManager CreateGildedDress()
+        public static GildedStockManagerV2 CreateGildedDress()
         {
-            throw new NotImplementedException();
+            return new GildedStockManagerV2("Gilded Dress");
         }
     }
 }
