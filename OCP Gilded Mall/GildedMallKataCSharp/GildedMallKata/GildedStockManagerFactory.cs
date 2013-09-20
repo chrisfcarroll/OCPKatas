@@ -17,7 +17,7 @@ namespace GildMallKata
 
         public static IStockManager2 CreateGildedTinCan()
         {
-            throw new NotImplementedException();
+            return new GildedStockManager( GildedTinCanConfiguration.Configuration );
         }
     }
 
