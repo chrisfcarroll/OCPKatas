@@ -6,39 +6,59 @@ using System.Threading.Tasks;
 
 namespace GildMallKata
 {
-
-    public class GildedStockManager 
+    /// <summary>
+    /// Backwards compatibility interface freezes the interface 'shipped' after Test 1.
+    /// </summary>
+    public interface IStockManager1
     {
-        public GildedStockManager()
-        {
-            StockList = new List<StockItem> ();
-        }
-
-        public List<StockItem> StockList { get; private set; }
+        List<StockItem> StockList { get; }
+    }
+    
+    /// <summary>
+    /// The interface shipped for Test 2 & 3
+    /// </summary>
+    public interface IStockManager2 : IStockManager1
+    {
+        new List<StockItemV2> StockList { get; }
+        DateTime StartDate { get; }
+        int Age { get; }
+        void EndOfDay();
+        void EndOfDay( int dayPassed );
     }
 
-    public class GildedStockManagerV2 : GildedStockManager
+    public class GildedStockManager : IStockManager1, IStockManager2
     {
+        List<StockItem> IStockManager1.StockList 
+                    { get { return StockList.Select(i=> i as StockItem).ToList() ; } }
+
+        public List<StockItemV2> StockList { get; private set; }
+
         public string Name { get; private set;}
 
+        public DateTime StartDate { get ; private set;}
+
+        public int Age { get; protected set;}
+
+        protected List<AgingRule> AgingRules;
+
         readonly DateTime startDate = DateTime.Today;
-        int age;
 
-        public GildedStockManagerV2( string name )
+        public GildedStockManager(ShopConfiguration configuration)
         {
-            Name = name;
+            StartDate = DateTime.Today;
+            StockList = new List<StockItemV2> ();
+            Name = configuration.Name;
+            AgingRules = configuration.AgingRules;
         }
-
-        new IEnumerable<StockItemV2> StockList { get { return base.StockList.Cast<StockItemV2>(); } }
 
         public void EndOfDay()
         {
-            age+=1;
-            foreach(var item in StockList)
+            Age+=1;
+            for(var i=0; i< StockList.Count; i++)
             {
-                if(startDate.AddDays(age) == item.ArrivedInStock.AddDays(71) )
+                foreach(var rule in AgingRules)
                 {
-                    item.Price *= 0.75m;
+                    rule(this, StockList[i]);
                 }
             }
         }
@@ -64,4 +84,8 @@ namespace GildMallKata
         public DateTime ArrivedInStock {get; set;}
     }
 
+    public class StockItemWithSellBy : StockItemV2
+    {
+        public DateTime SellBy {get; set;}
+    }
 }

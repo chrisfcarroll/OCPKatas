@@ -12,7 +12,7 @@ namespace ClassLibrary1
     [TestFixture]
     public class GildedMallTests
     {
-        GildedStockManager shop;
+        IStockManager1 shop;
 
         [SetUp]
         public void SetUp()
@@ -31,7 +31,7 @@ namespace ClassLibrary1
     [TestFixture]
     public class GildedDressTests
     {
-        GildedStockManagerV2 classUnderTest;
+        IStockManager2 classUnderTest;
         List<StockItemV2> testData= new List<StockItemV2>{
             new StockItemV2{Name="Red Dress",  Price=10},
             new StockItemV2{Name="Blue Dress", Price=15}
@@ -79,8 +79,11 @@ namespace ClassLibrary1
     [TestFixture]
     public class GildedTinCanTests
     {
-        GildedStockManagerV2 classUnderTest;
-        List<StockItem> testData;
+        IStockManager2 classUnderTest;
+        List<StockItemV2> testData= new List<StockItemV2>{
+            new StockItemWithSellBy{Name="Beans", Price=10, SellBy=DateTime.Now.AddDays(365)},
+            new StockItemWithSellBy{Name="Peas", Price=15, SellBy=DateTime.Now.AddDays(370)}
+        };
 
         [SetUp]
         public void SetupWithStock()
@@ -90,12 +93,21 @@ namespace ClassLibrary1
         }
 
         [Test]
-        public void ShouldKeepStockUntilSellby()
+        public void ShouldKeepStockUntilSellBy()
         {
-                classUnderTest.EndOfDay(400);
-                //A
-                classUnderTest.StockList.ShouldBeEmpty();
+            classUnderTest.EndOfDay(365);
+            classUnderTest.StockList.Count.ShouldEqual( 2 );
         }
+
+        [Test]
+        public void ShouldDisposeOfStockAtSellBy()
+        {
+            classUnderTest.EndOfDay(366);
+            classUnderTest.StockList.Count.ShouldEqual( 1 );
+            classUnderTest.EndOfDay(5);
+            classUnderTest.StockList.Count.ShouldEqual(0);
+        }
+
 
     }
 }
