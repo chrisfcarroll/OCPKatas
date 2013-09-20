@@ -16,23 +16,37 @@ that it's still a significant issue in software.
 This repo contains various katas which may help in learning ways of addressing this; and some 
 starter-projects for those katas.
 
-Kata Rules
-==========
+Rules for OCP Katas
+===================
+
 1. Write the first failing test.
 Then write a factory that returns an object, or an aggregate of objects, that make the test pass. The factory 
 should be limited to creating objects and linking them together. No conditionals allowed.
+1.1 You may refactor until you declare "Ship!" After you've shipped, you can't change the code any more.
+
 2. Write the next failing test.
 Can you make it pass by changing the factory and/or creating a new class and nothing else? If yes, great! 
 Go back to 1. If not, refactor until you can.
-To clarify: the constraint is that you should be able to implement each new requirement, not by changing the 
+
+There are 3 options for the Refactoring Rule:
+
+1. The Strict Rule: You should be able to implement each new requirement, not by changing the 
 classes/method you have written -- they are considered closed for modification. They should instead be open 
 for extension. That is, you can add classes which consume, or use, or inherit from, the existing classes. 
 As a concession to the small-scaleness of the spec, if the new requirement is too small to count as a new 
 responsibility and you are therefore reluctant to create a new class, you may instead add a new method to 
 your existing classes. You must still not alter or somehow subvert the existing methods.
-3. The refactoring should bring the system to a state where it’s possible to implement the next test just 
-by changing the aggregate of objects that is returned by the factory. Be careful not to implement new 
-functionality; the current test should still fail.
+
+2. The Backwards Compatibility Rule: You may refactor existing code subject to the constraint(s) that 
+You must maintain functional and interface compatibility. That is, (1) all existing tests (which represent
+your existing clients) must continue to pass unaltered. (2) You must maintain interface compatibility. 
+You can 'prove' interface compatbility by creating a named (or numbered) interface for each step. More
+extremely you could prove it by 
+
+3. The Wisdom of Hindsight Rule: You may refactor freely in order to reach the point where it’s possible
+to implement the next test just by changing the aggregate of objects that is returned by the factory.
+
+
 
 Gilded Mall Specs
 -----------------
