@@ -11,7 +11,7 @@ public class GildedStockManager {
         return stockList;
     }
 
-    public class StockItem {
+    public static class StockItem {
         private String name;
         private BigDecimal price;
 
