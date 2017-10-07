@@ -1,9 +1,11 @@
 OCPKatas - Katas for practising the Open-Closed Principle
 =========================================================
 
-"Software entities (classes, modules, functions, etc.) should be open for extension, but closed for
+The 4-minute-history : [cafe-encounter.net/p2158/three-historical-definitions-of-the-openclosed-principle-and-a-claim-that-its-pointless](https://www.cafe-encounter.net/p2158/three-historical-definitions-of-the-openclosed-principle-and-a-claim-that-its-pointless)
+
+tl;dr : "Software entities (classes, modules, functions, etc.) should be open for extension, but closed for
 modification"; that is, such an entity can allow its behaviour to be modified without altering its
-source code.
+source code. The paradox is both unavoidable and hard. There have been at least three attempts to (re)define and (re)solve it.
 
 Apparent implication: it should be possible to add functionality to a code base not by modifying
 the current code, but only by extending it.
